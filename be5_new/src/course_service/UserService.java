@@ -34,7 +34,7 @@ public class UserService {
 			return;
 		}
 
-		// Insert the new user into the registered_student table
+		// Insert the new user into the student table
 		Connection connection = DBConnection.makeConnection();
 		String insertQuery = "INSERT INTO student (user_id, password, name) VALUES (?, ?, ?)";
 
@@ -62,7 +62,6 @@ public class UserService {
 		ResultSet resultSet = statement.executeQuery();
 
 		if (resultSet.next()) {
-			// Login Successful
 			System.out.println("Login Successfully");
 			connection.close();
 			return true;
@@ -126,7 +125,6 @@ public class UserService {
 	                Course course = new Course();
 	                course.setId(resultSet.getInt("id"));
 	                course.setName(resultSet.getString("name"));
-	                // Populate other course details as needed
 
 	                System.out.println(course.getName());
 	            } while (resultSet.next());
@@ -137,40 +135,5 @@ public class UserService {
 	        e.printStackTrace();
 	    }
 	}
-
-
-	public static void showRegisteredCourseToUser2(String userId) {
-		try {
-			Connection connection = DBConnection.makeConnection();
-			String query = "SELECT c.* FROM course c " +
-                    "JOIN enrolment e ON c.id = e.course_id " +
-                    "WHERE e.user_id = ?";
-
-			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setString(1, userId);
-
-			ResultSet resultSet = statement.executeQuery();
-			if (!resultSet.isBeforeFirst()) {
-				System.out.println("No course is registered");
-			} else {
-				System.out.println("Registered Courses:");
-
-				while (resultSet.next()) {
-					int courseId = resultSet.getInt("id");
-					String courseName = resultSet.getString("name");
-					// You can retrieve other course details as needed
-					// For example: resultSet.getDate("begin_date"), resultSet.getDate("end_date"),
-					// resultSet.getDouble("fee")
-
-					System.out.println("Course ID: " + courseId + ", Name: " + courseName);
-				}
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-
 
 }
