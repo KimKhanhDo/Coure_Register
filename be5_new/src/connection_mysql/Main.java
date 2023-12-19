@@ -70,7 +70,7 @@ public class Main {
 	public static void registerUser(Scanner scanner, UserService userService) {
 		System.out.println("----- Registration Form -----");
 
-		// Prompt user for registration details
+		
 		System.out.println("Enter ID: ");
 		String id = scanner.nextLine();
 
