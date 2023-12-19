@@ -22,11 +22,11 @@ public class CourseService {
 		Connection connection = DBConnection.makeConnection();
 		String SQL = "SELECT * FROM course";
 
-		Statement stmt = connection.createStatement(); //Statement stmt = connection.createStatement(SQL)
+		Statement stmt = connection.createStatement(); 
 		ResultSet resultSet = stmt.executeQuery(SQL);
 
 
-		while (resultSet.next()) { // stmt.executeQuery().next();
+		while (resultSet.next()) { 
 			int id = resultSet.getInt("id");
 			String name = resultSet.getString("name");
 			Date beginDate = resultSet.getDate("begin_date");
@@ -75,32 +75,5 @@ public class CourseService {
 
 		return mentors;
 	}
-
-//	public static List<Mentor> showMentorByCourse(Course course) throws SQLException {
-//		List<Mentor> mentors = new ArrayList<>();
-//
-//		Connection connection = DBConnection.makeConnection();
-//		String SQL = "SELECT teacher.id, teacher.name, teacher.email, teacher.phone " + "FROM teacher "
-//				+ "JOIN teaching_info ON teacher.id = teaching_info.teacher_id " + "WHERE teaching_info.course_id = ?";
-//
-//		PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-//		preparedStatement.setInt(1, course.getId());
-//
-//		ResultSet resultSet = preparedStatement.executeQuery();
-//
-//		while (resultSet.next()) {
-//			int mentorId = resultSet.getInt("id");
-//			String mentorName = resultSet.getString("name");
-//			String mentorEmail = resultSet.getString("email");
-//			String mentorPhone = resultSet.getString("phone");
-//
-//			Mentor mentor = new Mentor(mentorId, mentorName, mentorEmail, mentorPhone);
-//			mentors.add(mentor);
-//		}
-//
-//		connection.close();
-//
-//		return mentors;
-//	}
 
 }
