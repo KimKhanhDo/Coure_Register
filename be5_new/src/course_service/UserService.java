@@ -69,7 +69,7 @@ public class UserService {
 			System.out.println("Invalid Account or Password");
 		}
 
-		connection.close();
+		
 		return false;
 	}
 
