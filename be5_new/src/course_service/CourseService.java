@@ -67,7 +67,6 @@ public class CourseService {
 				mentors.add(mentor);
 			}
 
-			connection.close();
 		} catch (SQLException e) {
 			System.out.println("An error occurred while fetching mentors: " + e.getMessage());
 		}
